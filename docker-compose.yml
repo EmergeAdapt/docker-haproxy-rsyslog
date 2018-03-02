@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    image: nginx
+    ports:
+     - "7777:80"
+  haproxy:
+    build: .
+    depends_on:
+      - web
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+     - "7778:7778"
